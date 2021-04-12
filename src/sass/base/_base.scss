@@ -1,0 +1,61 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /*box-sizig prop defined in body el is applied to all els*/
+}
+
+html {
+  /* in here we define the root font-size so that we can use "2em"(2*value from the parent) 
+  and "2rem"(2*value from the root) */
+  /* if we wanna change all document font-sizes we just change root font-size (by default is 16px) */
+  /* font-size: 10px; */
+  /* now 10px===1rem and we change px into rems*/
+  /* IT IS NOT A GOOD PRACTICE defining root font-size with px , cuz when users zoom in/out it wont be changed
+  we define in percentage those 10px ((10/16)*100) */
+  font-size: 62.5%;
+
+  // @include respond-phone {
+  //   font-size: 50%;
+  // }
+
+  //OR
+
+  @include respond(tab-land) {
+    //width < 1200?
+    font-size: 56.25%; //1rem == 9px
+  }
+  @include respond(tab-port) {
+    //width < 900?
+    font-size: 50%; //1rem == 8px
+  }
+  // @include respond(phone) {
+  //   //width < 600?
+  //   font-size: 30%; //1rem == 4.8px
+  // } //width > 1800?
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem == 12px
+  }
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: $color-grey-dark;
+  padding: 3rem;
+  box-sizing: border-box;
+  /* calc all margins,borders and padings into defined width and height of the box)*/
+
+  @include respond(tab-port) {
+    //width < 900?
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

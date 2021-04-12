@@ -1,0 +1,82 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  background-color: rgba($color-white, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem; // 6+3from the transform
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+  //   &>*{
+  //     transform: skewX(12deg);
+  //   }
+  //this is not going to work cuz we already have transform into the shape
+  // so we fix this time manualy to  elements
+
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left; //float only works if defined width and height
+
+    shape-outside: circle(50% at 50% 50%); //makes content circle
+    // (radius 50% of the box AT x y position of the center in the box)
+    clip-path: circle(50% at 50% 50%); //clip the background
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+
+    @include respond(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
+  }
+
+  &__image {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.4);
+    backface-visibility: hidden; //fix shape
+    transition: all 0.3s;
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    color: $color-white;
+    text-align: center;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: all 0.5s;
+    backface-visibility: hidden; //fix shaking
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  &:hover &__image {
+    opacity: 1;
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+  }
+
+  &__text {
+    transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: skewX(0);
+    }
+  }
+}
