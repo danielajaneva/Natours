@@ -15,7 +15,7 @@
   "homepage": "https://danielajaneva.github.io/Natours",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b gh-pages -d build",
+    "deploy": "gh-pages -b gh-pages-site -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
