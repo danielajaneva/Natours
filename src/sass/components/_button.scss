@@ -1,0 +1,100 @@
+.btn {
+  &, //this will apply all props to <button> el
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10rem;
+    position: relative;
+
+    /*which props we wanna animate(hover and active),animation time*/
+    transition: all 0.2s;
+
+    //Change for the <button> element cuz we used like <a>
+    border: none;
+  }
+
+  &--animated {
+    /*import created animation*/
+    animation-name: moveUp;
+    animation-duration: 1s;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2); /*offset,y-down,blur,color*/
+
+    /*activate the "after state" when hover btn*/
+    &::after {
+      transform: scale(1.4); /*scale the state(double the size)*/
+      opacity: 0;
+    }
+  }
+
+  /*active is when click the button*/
+  &:active ,   
+  &:focus //focus should look like the active for the <button>
+  {
+    outline: none; //for the <button>
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+    padding: 1.5rem 4rem;
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+    padding: 1.5rem 4rem;
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
+  /*creating another child btn hidden behind*/
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute; /*must add relative to the parent btn*/
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+}
+
+//ABOUT
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 0.3rem;
+
+    transition: all 0.2s;
+  }
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+    transform: translateY(0);
+  }
+}
